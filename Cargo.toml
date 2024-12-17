@@ -1,0 +1,21 @@
+[package]
+name = "runge-kutta-compute-shader"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bytemuck = { version = "1.20.0", features = ["derive"] }
+flume = "0.11.1"
+getrandom = "0.2.15"
+log = "0.4.22"
+pollster = "0.4.0"
+wgpu = "23.0.1"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+env_logger = "0.11.5"
+
+# Dependencies to allow porting to WebAssembly (web target)
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1.7"
+console_log = "1.0.0"
+wasm-bindgen = "0.2.99"
